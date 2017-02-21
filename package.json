@@ -1,0 +1,34 @@
+{
+  "name": "whistlecat",
+  "version": "0.2.7",
+  "description": "",
+  "main": "content_script.js",
+  "scripts": {
+    "assets": "npm run icons && npm run manifest",
+    "manifest": "ln -sf $(pwd)/src/manifest.json $(pwd)/dist/manifest.json",
+    "icons": "ln -sf $(pwd)/src/icons/ $(pwd)/dist/icons && rm -rf dist/icons/icons",
+    "start": "npm run assets && webpack --watch --config webpack.config.js",
+    "bump": "npm version patch && ./bump.sh && git commit -a -m bump",
+    "deploy": "npm run bump && npm run assets && webpack --config webpack.config.js && ./publish.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "mosi": "0.0.12",
+    "webpack": "^2.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-env": "^1.1.8",
+    "chrome-webstore-upload-cli": "^1.1.1",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.9.0",
+    "file-loader": "^0.10.0"
+  }
+}
